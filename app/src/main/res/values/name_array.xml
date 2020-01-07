@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="names">
+        <item>Dalo</item>
+        <item>Liam</item>
+        <item>Emma</item>
+        <item>Noah</item>
+        <item>Olivia</item>
+        <item>William</item>
+        <item>Ava</item>
+        <item>James</item>
+        <item>Isabella</item>
+        <item>Oliver</item>
+        <item>Sophia</item>
+        <item>Benjamin</item>
+        <item>Charlotte</item>
+        <item>Elijah</item>
+        <item>Mia</item>
+        <item>Lucas</item>
+        <item>Amelia</item>
+        <item>Mason</item>
+        <item>Harper</item>
+        <item>Logan</item>
+        <item>Evelyn</item>
+    </string-array>
+
+</resources>
