@@ -1,12 +1,17 @@
 package com.example.restaurantmanagerapp.view;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.restaurantmanagerapp.R;
 import com.example.restaurantmanagerapp.tasks.RestaurantTasks;
@@ -29,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     TextView thread1Tv, thread2Tv, thread3Tv;
     ProgressBar threadBar1, threadBar2, threadBar3;
     Button addButton;
+
+    public static final int REQUEST_CODE = 707;
 
     private String [] names;
     private ArrayList<Runnable> nameList = new ArrayList<>();
@@ -183,7 +191,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            requestCameraPermission();
+    }
 
+    private void requestCameraPermission(){
+        ActivityCompat.requestPermissions(
+                this,
+                new String [] {Manifest.permission.CAMERA},
+                REQUEST_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (permissions[0].equals(Manifest.permission.CAMERA) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Camera Permission Granted", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(permissions[0].equals(Manifest.permission.CAMERA))
+            requestCameraPermission();
+
+        else
+            Toast.makeText(this, "Camera Permission must be ranted from phone settings", Toast.LENGTH_SHORT).show();
     }
 
     @Override
